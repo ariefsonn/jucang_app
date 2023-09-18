@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jucang_app/pages/owner/home_page.dart';
 import 'package:jucang_app/pages/owner/report_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class OwnerNavBar extends StatefulWidget {
   const OwnerNavBar({Key? key}) : super(key: key);
@@ -11,16 +12,28 @@ class OwnerNavBar extends StatefulWidget {
 
 class _OwnerNavBarState extends State<OwnerNavBar> {
   late int _selectedPage;
+  String? name;
+  String? token;
+  late SharedPreferences _prefs;
 
   late final List<Widget> _pages = <Widget> [
-    const OwnerHomePage(),
-    const OwnerReportPage(),
+    OwnerHomePage(name!, token!),
+    OwnerReportPage(bearer: token!),
   ];
 
   @override
   void initState() {
+    setPrefs();
     _selectedPage = 0;
     super.initState();
+  }
+
+  Future<void> setPrefs() async {
+    _prefs = await SharedPreferences.getInstance();
+    setState(() {
+      name = _prefs.getString('nama') ?? 'Unknown';
+      token = _prefs.getString('token') ?? '';
+    });
   }
 
   void _onItemTapped(int index) {

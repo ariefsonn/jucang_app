@@ -31,4 +31,16 @@ class textstyle {
       fontSize: 16.5,
       fontStyle: FontStyle.normal
   );
+  static const TextStyle style_delete = TextStyle(
+      color: Colors.red,
+      fontWeight: FontWeight.w700,
+      fontSize: 16.5,
+      fontStyle: FontStyle.normal
+  );
+  static const TextStyle greetings_name = TextStyle(
+      color: Colors.black54,
+      fontWeight: FontWeight.w600,
+      fontSize: 18,
+      fontStyle: FontStyle.normal
+  );
 }

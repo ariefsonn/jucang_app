@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:jucang_app/layout/layout_navbar.dart';
+import 'package:jucang_app/pages/detail_pages.dart';
 import 'package:jucang_app/pages/login_page.dart';
 import 'package:jucang_app/pages/owner/home_page.dart';
 import 'package:jucang_app/pages/owner/report_page.dart';
 import 'package:jucang_app/pages/owner/sales_page.dart';
+import 'package:jucang_app/pages/owner/update_page.dart';
 import 'package:jucang_app/pages/sales/home_page.dart';
 import 'package:jucang_app/pages/sales/input_stuff_page.dart';
 
@@ -19,8 +21,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       title: 'Flutter Demo',
-      debugShowCheckedModeBanner: true,
-      home: InputStuffPage()
+      debugShowCheckedModeBanner: false,
+      home: LoginPage()
     );
   }
 }
