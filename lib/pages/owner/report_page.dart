@@ -16,7 +16,6 @@ class OwnerReportPage extends StatefulWidget {
 
 class _OwnerReportPageState extends State<OwnerReportPage> {
   List<Map<String, dynamic>> hutangList = [];
-  List<Map<String, dynamic>> lunasList = [];
 
   static final _host = Uri.https(Helper.api, '/');
 
@@ -38,8 +37,7 @@ class _OwnerReportPageState extends State<OwnerReportPage> {
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
       setState(() {
-        hutangList = List<Map<String, dynamic>>.from(data['Hutang']);
-        lunasList = List<Map<String, dynamic>>.from(data['Lunas']);
+        hutangList = List<Map<String, dynamic>>.from(data);
       });
     } else {
       throw Exception('Failed to load data');
@@ -59,23 +57,25 @@ class _OwnerReportPageState extends State<OwnerReportPage> {
             scrollDirection: Axis.vertical,
             child: DataTable(
               columns: [
-                DataColumn(label: Text('ID')),
-                DataColumn(label: Text('Nama Toko')),
-                DataColumn(label: Text('Alamat Toko')),
-                DataColumn(label: Text('Tanggal')),
-                DataColumn(label: Text('Total Harga')),
-                DataColumn(label: Text('Return')),
-                DataColumn(label: Text('Terjual')),
-                DataColumn(label: Text('Sample')),
-                DataColumn(label: Text('Status')),
-                for (var product in getProductNames(hutangList + lunasList))
+                const DataColumn(label: Text('ID')),
+                const DataColumn(label: Text('Nama User')),
+                const DataColumn(label: Text('Nama Toko')),
+                const DataColumn(label: Text('Alamat Toko')),
+                const DataColumn(label: Text('Tanggal')),
+                const DataColumn(label: Text('Total Harga')),
+                const DataColumn(label: Text('Return')),
+                const DataColumn(label: Text('Terjual')),
+                const DataColumn(label: Text('Sample')),
+                const DataColumn(label: Text('Status')),
+                for (var product in getProductNames(hutangList))
                   DataColumn(label: Text(product)),
               ],
               rows: [
-                for (var item in hutangList + lunasList)
+                for (var item in hutangList)
                   DataRow(
                     cells: [
                       DataCell(Text(item['id'].toString())),
+                      DataCell(Text(item['user']['name'])),
                       DataCell(Text(item['nama_toko'])),
                       DataCell(Text(item['alamat_toko'])),
                       DataCell(Text(item['tanggal'])),
@@ -84,7 +84,7 @@ class _OwnerReportPageState extends State<OwnerReportPage> {
                       DataCell(Text(item['terjual'])),
                       DataCell(Text(item['sample'])),
                       DataCell(Text(item['status'])),
-                      for (var productName in getProductNames(hutangList + lunasList))
+                      for (var productName in getProductNames(hutangList))
                         DataCell(Text(getProductAmount(item, productName))),
                     ],
                   ),

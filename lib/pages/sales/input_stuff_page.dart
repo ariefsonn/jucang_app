@@ -51,7 +51,6 @@ class _InputStuffPageState extends State<InputStuffPage> {
           amountOrder, '1',
           _dateInput.text,
           widget.bearer,
-          totalProduct,
         );
       } else {
         input.inputStuff(
@@ -62,7 +61,6 @@ class _InputStuffPageState extends State<InputStuffPage> {
           amountOrder, '0',
           _dateInput.text,
           widget.bearer,
-          totalProduct,
         );
       }
     }
@@ -180,7 +178,7 @@ class _InputStuffPageState extends State<InputStuffPage> {
                     padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget> [
+                      children: <Widget>  [
                         TextFormField(
                           decoration: const InputDecoration(
                             hintText: 'Masukan nama Toko',
@@ -302,7 +300,7 @@ class _InputStuffPageState extends State<InputStuffPage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       const Text("Total Harga: ", style: textstyle.greetings_salute),
-                      Text("$totalProduct", style: textstyle.greetings_salute),
+                      Text(NumberFormat.simpleCurrency(name: "IDR").format(totalProduct), style: textstyle.greetings_salute),
                     ],
                   ),
                 ),

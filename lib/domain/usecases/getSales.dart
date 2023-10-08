@@ -17,7 +17,7 @@ class GetSalesImpl {
         },
       );
       if (response.statusCode == 200) {
-        List o = jsonDecode(response.body)['S'];
+        List o = jsonDecode(response.body);
         return o.map((e) => Sales.fromJson(e)).toList();
       }
     } on TimeoutException {

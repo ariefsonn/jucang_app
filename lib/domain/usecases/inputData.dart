@@ -10,7 +10,7 @@ import 'package:jucang_app/pages/sales/home_page.dart';
 class InputDataImpl{
   static final _host = Uri.https(Helper.api, '/');
 
-  Future<void> inputStuff(BuildContext context, String id, String nama, String alamat, Map<String, String> order, String status, String tanggal, String bearer, int harga) async {
+  Future<void> inputStuff(BuildContext context, String id, String nama, String alamat, Map<String, String> order, String status, String tanggal, String bearer) async {
     try {
       final response = await http.post(
         _host.replace(path: '/api/sales/mesan/$id'),
@@ -26,7 +26,6 @@ class InputDataImpl{
           "return": "0",
           "terjual": "0",
           "sample": "0",
-          "total_harga": harga,
           "dataProduk": order,
         }),
       );

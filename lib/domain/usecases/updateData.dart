@@ -10,7 +10,7 @@ import 'package:jucang_app/pages/owner/sales_page.dart';
 class UpdateDataImpl {
   static final _host = Uri.https(Helper.api, '/');
 
-  Future<void> updateStuff(BuildContext context, String name, String id, int status, int kembali, int sold, int sample, String bearer, String id_user) async {
+  Future<void> updateStuffOwner(BuildContext context, String name, String id, int status, int kembali, int sold, int sample, String bearer, String id_user) async {
     try {
       final response = await http.post(
         _host.replace(path: '/api/sales/update/$id'),
@@ -23,6 +23,30 @@ class UpdateDataImpl {
           "return" : kembali,
           "terjual" : sold,
           "sample" : sample,
+        }),
+      );
+      if (response.statusCode == 200) {
+        showSnackBar(context);
+      }
+    } on TimeoutException {
+      throw TimeoutException('');
+    }
+    throw Exception();
+  }
+  Future<void> updateStuffSales(BuildContext context, String name, String id, int status, int kembali, int sold, int sample, String bearer, String id_user, Map<String, String> order) async {
+    try {
+      final response = await http.post(
+        _host.replace(path: '/api/sales/update/$id'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+          'Authorization' : 'Bearer $bearer',
+        },
+        body: jsonEncode(<String, dynamic>{
+          "status" : status,
+          "return" : kembali,
+          "terjual" : sold,
+          "sample" : sample,
+          "dataProduk" : order,
         }),
       );
       if (response.statusCode == 200) {

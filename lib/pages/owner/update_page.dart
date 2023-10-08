@@ -157,7 +157,7 @@ class _OwnerUpdatePageState extends State<OwnerUpdatePage> with TickerProviderSt
               child: ElevatedButton(
                 onPressed: () {
                   print(_tabController.index);
-                  update.updateStuff(
+                  update.updateStuffOwner(
                     context,
                     widget.name,
                     widget.id,

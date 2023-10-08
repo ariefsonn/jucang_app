@@ -215,16 +215,8 @@ class _HomePageSalesState extends State<HomePageSales> with TickerProviderStateM
                                               ],
                                             ),
                                             Column(
+                                              mainAxisAlignment: MainAxisAlignment.center,
                                               children: [
-                                                GestureDetector(
-                                                  onTap: () {
-                                                    setState(() {
-                                                      showDialog(context: context, builder: (BuildContext c) =>  showDeleteDialog(ctx: context, id: snapshot.data![i].id.toString()));
-                                                    });
-                                                  },
-                                                  child: const Icon(Icons.delete_outline_rounded, color: Colors.red, size: 25),
-                                                ),
-                                                const SizedBox(height: 5),
                                                 GestureDetector(
                                                   onTap: () {
                                                     Navigator.push(context, MaterialPageRoute(builder: (c) => SalesUpdatePage(
@@ -321,16 +313,8 @@ class _HomePageSalesState extends State<HomePageSales> with TickerProviderStateM
                                               ],
                                             ),
                                             Column(
+                                              mainAxisAlignment: MainAxisAlignment.center,
                                               children: [
-                                                GestureDetector(
-                                                  onTap: () {
-                                                    setState(() {
-                                                      showDialog(context: context, builder: (BuildContext c) =>  showDeleteDialog(ctx: context, id: snapshot.data![i].id.toString()));
-                                                    });
-                                                  },
-                                                  child: const Icon(Icons.delete_outline_rounded, color: Colors.red, size: 25),
-                                                ),
-                                                const SizedBox(height: 5),
                                                 GestureDetector(
                                                   onTap: () {
                                                     Navigator.push(context, MaterialPageRoute(builder: (c) => SalesUpdatePage(
